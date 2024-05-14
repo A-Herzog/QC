@@ -1,0 +1,6 @@
+.vscode
+.tmp
+bin
+dist
+QC.exe
+desktop-app/2_Sign.bat
