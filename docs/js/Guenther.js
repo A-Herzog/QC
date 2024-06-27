@@ -39,7 +39,7 @@ class GuentherBox extends Box {
    */
   constructor() {
     super();
-    this.#xSteps=100;
+    this.#xSteps=200;
     this.#ready=false;
     this.append(new Card(language.GUI.Guenther.name,language.GUI.Guenther.info));
 
@@ -92,8 +92,9 @@ class GuentherBox extends Box {
     /* Calculate operation characteristics */
     const xValues=Array.from({length: this.#xSteps+1}, (_,i)=>i/this.#xSteps);
     const d=calcOpCharacteristics(mode,n,c,N,xValues);
-    const p1=d[Math.round(limits[0]*this.#xSteps)];
-    const p2=d[Math.round(limits[2]*this.#xSteps)];
+    const dlimits=calcOpCharacteristics(mode,n,c,N,[limits[0],limits[2]]);
+    const p1=dlimits[0];
+    const p2=dlimits[1];
 
     /* Show AQL and LQ information */
     const limitsPercent=limits.map(v=>(v*100).toLocaleString()+"%");
@@ -177,8 +178,12 @@ class GuentherBox extends Box {
       n=c;
       do {
         n++;
+        if (n>2000) {
+          alert(language.GUI.Guenther.cancelInfo);
+          return false;
+        }
         result=this.#isPlanOk(n,c);
-      } while (!result[1]);
+      } while (result[0] && !result[1]);
     } while (!result[0]);
 
     this.#plan.setPlan(n,c);
@@ -187,8 +192,12 @@ class GuentherBox extends Box {
   #optimizeStep() {
     this.#plan.setPlan(this.#animationN,this.#animationC);
     const result=this.#isPlanOk(this.#animationN,this.#animationC);
-    if (!result[1]) {
+    if (result[0] && !result[1]) {
       this.#animationN++;
+      if (this.#animationN>2000) {
+        alert(language.GUI.Guenther.cancelInfo);
+        return;
+      }
     } else {
       if (result[0]) {
         this.#points.enabled=true;

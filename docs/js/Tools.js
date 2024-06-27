@@ -467,14 +467,16 @@ class FormElementHorizontal {
   #mainDiv;
   _label;
   _inputDiv;
+  _rightDiv;
   #changeCallback;
 
   /**
    * Constructor
    * @param {String} labelText Label text for the form element
    * @param {Object} changeCallback Function which is called if the value of the form element is changed
+   * @param {Boolean} rightArea Add a div on the right side of the slider (optional, default to false)
    */
-  constructor(labelText, changeCallback) {
+  constructor(labelText, changeCallback, rightArea=false) {
     this._id=getID();
     this.#changeCallback=changeCallback;
 
@@ -490,9 +492,16 @@ class FormElementHorizontal {
     this._label=label;
 
     const inputDiv=document.createElement("div");
-    inputDiv.className="col-sm-10";
+    inputDiv.className=rightArea?"col-sm-8":"col-sm-10";
     mainDiv.appendChild(inputDiv);
     this._inputDiv=inputDiv;
+
+    if (rightArea) {
+      const rightDiv=document.createElement("div");
+      rightDiv.className="col-sm-2";
+      mainDiv.appendChild(rightDiv);
+      this._rightDiv=rightDiv;
+    }
   }
 
   /**
@@ -526,6 +535,7 @@ class HorizontalSlider extends FormElementHorizontal {
   #labelText;
   #input;
   #labelValueFormatCallback;
+  #info;
 
   /**
    * Constructor
@@ -536,13 +546,15 @@ class HorizontalSlider extends FormElementHorizontal {
    * @param {Number} startValue Initial value for the slider
    * @param {Object} labelValueFormatCallback Function which is called for formatting the current slider value to be displayed in the info text
    * @param {Object} changeCallback Function which is called if the value of the form element is changed
+   * @param {Number} infoMode Info next to the slider: 0=off, 1=span, 2=plain div (optional, defaults to 0)
    */
-  constructor(labelText, minValue, maxValue, step, startValue, labelValueFormatCallback, changeCallback) {
-    super(labelText,changeCallback);
+  constructor(labelText, minValue, maxValue, step, startValue, labelValueFormatCallback, changeCallback, infoMode=0) {
+    super(labelText,changeCallback,infoMode>0);
 
     this.#labelText=labelText;
     this.#labelValueFormatCallback=labelValueFormatCallback;
 
+    /* Slider */
     const input=document.createElement("input");
     input.type="range";
     input.className="form-range";
@@ -554,9 +566,30 @@ class HorizontalSlider extends FormElementHorizontal {
     this._inputDiv.appendChild(input);
     this.#input=input;
 
+    /* Info/Setup on right side */
+    if (infoMode==1) {
+      this.#info=document.createElement("span");
+      this._rightDiv.appendChild(this.#info);
+    }
+
     input.oninput=()=>this._fireChangeNotify();
 
     this._fireChangeNotify();
+  }
+
+  /**
+   * Sets the info text on the right side of the slider.
+   * @param {string} text Anzuzeigender Text
+   */
+  set info(text) {
+    this.#info.innerHTML=text;
+  }
+
+  /**
+   * Returns the div on the right side of the slider.
+   */
+  get info() {
+    return this._rightDiv;
   }
 
   /**
@@ -765,6 +798,7 @@ class Plan extends Card {
   #info;
   #buttons;
   #ready;
+  #maxN;
 
   /**
    * Constructor
@@ -781,9 +815,32 @@ class Plan extends Card {
     this.#changeCallback=changeCallback;
     this.#isOkCallback=isOkCallback;
 
-    this.append(this.#planN=new HorizontalSlider("n=",1,200,1,n,v=>v,()=>this._fireChangeNotify()));
-    this.append(this.#planC=new HorizontalSlider("c=",0,200,1,c,v=>v,()=>this._fireChangeNotify()));
+    this.append(this.#planN=new HorizontalSlider("n=",1,200,1,n,v=>v,()=>this._fireChangeNotify(),2));
+    this.append(this.#planC=new HorizontalSlider("c=",0,200,1,c,v=>v,()=>this._fireChangeNotify(),1));
     this.append(this.#info=new InfoText());
+
+    /* Select element for maxN */
+    const label=document.createElement("label");
+    label.className="form-label";
+    label.innerHTML="max<sub>N</sub>=";
+    label.style.paddingRight="5px";
+    this.#planN.info.appendChild(label);
+    this.#maxN=document.createElement("select");
+    this.#planN.info.appendChild(this.#maxN);
+    this.#maxN.className="form-select";
+    this.#maxN.style.width="unset";
+    this.#maxN.style.display="inline";
+    this.#maxN.onchange=()=>{
+      this.#planN.setMax(this.#maxN.value);
+      this.updateStatus();
+    };
+    let option;
+    this.#maxN.appendChild(option=document.createElement("option"));
+    option.value=200;
+    option.innerHTML="200";
+    this.#maxN.appendChild(option=document.createElement("option"));
+    option.value=2000;
+    option.innerHTML="2000";
 
     this.#buttons=[];
     let button;
@@ -815,7 +872,9 @@ class Plan extends Card {
   updateStatus() {
     const n=this.#planN.value;
     this.#planC.setMax(n);
+    this.#planC.info="max<sub>C</sub>="+n;
     const c=this.#planC.value;
+
     const info=[];
     info.push(language.GUI.samplingPlanInfo1+n+language.GUI.samplingPlanInfo2+c+language.GUI.samplingPlanInfo3);
     if (this.#isOkCallback) info.push(this.#isOkCallback(n,c));
@@ -835,11 +894,19 @@ class Plan extends Card {
    * Sets a new sample plan
    * @param {Number} n Sample plan parameter n
    * @param {Number} c Sample plan parameter c
+   * @return Returns true if the plan could be set
    */
   setPlan(n, c) {
+    if (n>2000) return false;
+    if (n>200 && this.#maxN.value==200) {
+      this.#maxN.value=2000;
+      this.#planN.setMax(this.#maxN.value);
+    }
     this.#planN.value=n;
+    this.#planC.setMax(n);
     this.#planC.value=c;
     this._fireChangeNotify();
+    return true;
   }
 
   /**

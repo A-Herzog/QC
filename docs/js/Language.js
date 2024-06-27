@@ -89,6 +89,7 @@ lang.GUI.Guenther.StatusTF="<span style='color: green;'>Der Stichprobenplan häl
 lang.GUI.Guenther.StatusFT="<span style='color: green;'>Der Stichprobenplan hält die Schlechtgrenze ein</span>, <span style='color: red;'>verletzt aber die Gutgrenze</span>.";
 lang.GUI.Guenther.StatusFF="<span style='color: red;'>Der Stichprobenplan verletzt sowohl die Gut- als auch die Schlechtgrenze.</span>";
 lang.GUI.Guenther.searchOptimalPlanInfo="Gesucht wird ein <i>(n-c)</i>-Stichprobenplan, der Gut- und Schlechtgrenze einhält und mit einem möglichst kleinen Stichprobenumfang auskommt. Beginnend mit <i>n</i>=1, <i>c</i>=0 wird <i>n</i> so lange erhöht, bis die Schlechtgrenze eingehalten wird. Ist in diesem Fall auch die Gutgrenze erfüllt, so endet der Algorithmus. Andernfalls wird <i>c</i> um eins erhöhe und es wird wieder ab <i>n</i>=<i>c</i> angefangen zu suchen.";
+lang.GUI.Guenther.cancelInfo="Die Berechnung wurde abgebrochen, weil n=2000 erreicht wurde, ohne dass ein gültiger Plan gefunden werden konnte.";
 
 lang.GUI.Guenther.info=`
 <p>
@@ -201,6 +202,7 @@ lang.GUI.Guenther.StatusTF="<span style='color: green;'>The sampling plan compli
 lang.GUI.Guenther.StatusFT="<span style='color: green;'>The sampling plan complies with the limiting quality</span>, <span style='color: red;'>but violates the acceptable quality level</span>.";
 lang.GUI.Guenther.StatusFF="<span style='color: red;'>The sampling plan violates both the acceptable quality level and the limiting quality.</span>";
 lang.GUI.Guenther.searchOptimalPlanInfo="We search a (<i>n</i>-<i>c</i>) sample plan, which fulfills the acceptable qualitiy level and the limiting quality and that has a as small as possible sample size. Starting with <i>n</i>=1, <i>c</i>=0 the value of <i>n</i> will be increased until the limiting quality is hold. If the acceptable quality limit is also hold in this case, the algorithmus stops. In the other case <i>c</i> will be increased and the algorithmus will start again with <i>n</i>=<i>c</i>.";
+lang.GUI.Guenther.cancelInfo="The calculation was aborted because n=2000 was reached without a valid plan being found.";
 
 lang.GUI.Guenther.info=`
 <p>

@@ -167,7 +167,7 @@ class PhilipsBox extends Box {
       cdf=jStat.lowRegGamma(degreesOfFreedom/2,x/2);
     }
 
-    console.log("cdf("+x+")="+cdf);
+    /* console.log("cdf("+x+")="+cdf); */
 
     return Math.ceil(x/2/p);
   }
@@ -179,15 +179,20 @@ class PhilipsBox extends Box {
 
     let c=0;
     let n=this.#getN(c,p);
-    console.log("c="+c+"\tn="+n);
-    console.log("h="+(2*(n*p)**(c+1)/factorial(c)*Math.exp(-n*p)));
+    /* console.log("c="+c+"\tn="+n);
+    console.log("h="+(2*(n*p)**(c+1)/factorial(c)*Math.exp(-n*p))); */
 
     /* Target: 2(n*p)^(c+1)/c!*exp(-n*p)>=h */
     while (2*(n*p)**(c+1)/factorial(c)*Math.exp(-n*p)<h) {
       c++;
       n=this.#getN(c,p);
-      console.log("c="+c+"\tn="+n);
-      console.log("h="+(2*(n*p)**(c+1)/factorial(c)*Math.exp(-n*p)));
+      /* console.log("c="+c+"\tn="+n);
+      console.log("h="+(2*(n*p)**(c+1)/factorial(c)*Math.exp(-n*p))); */
+    }
+
+    if (n>2000) {
+      alert(lang.GUI.Guenther.cancelInfo);
+      return;
     }
 
     this.#plan.setPlan(n,c);
@@ -200,6 +205,10 @@ class PhilipsBox extends Box {
 
     let c=this.#animationC;
     let n=this.#getN(c,p);
+    if (n>2000) {
+      alert(lang.GUI.Guenther.cancelInfo);
+      return;
+    }
     this.#plan.setPlan(n,c);
 
     if (2*(n*p)**(c+1)/factorial(c)*Math.exp(-n*p)>=h) {
