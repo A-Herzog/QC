@@ -30,7 +30,7 @@ footer a {
   .bg-light {
     background-color: rgba(var(--bs-secondary-rgb),var(--bs-bg-opacity)) !important;
   }
-  
+
   footer a {
     color: rgb(139, 185, 254)
   }
@@ -48,10 +48,6 @@ footer a {
 
 #languageButton:hover {
   color: black;
-}
-
-#distSelect {
-  font-weight: bold;
 }
 
 footer {
