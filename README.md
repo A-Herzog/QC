@@ -10,11 +10,9 @@ To use statistical quality control just go to
 
 ![Website status](https://img.shields.io/website?url=https%3A%2F%2Fa-herzog.github.io%2FQC%2F)
 
-<!--
-You can also download queue calculator as an offline usable Windows application:
+You can also download statistical quality control as an offline usable Windows application:
 
 **[QC.exe](https://github.com/A-Herzog/QC/releases/latest/download/QC.exe)**
--->
 
 ## License
 
