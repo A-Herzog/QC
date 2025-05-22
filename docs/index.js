@@ -42,9 +42,12 @@ function start() {
       link.classList.add("link-primary");
     }
   } else {
-    const downloadA='<a id="downloadApp" target="_blank" href="https://github.com/A-Herzog/QC/releases/latest/download/QC.exe" style="display: none;"></a>';
-    const downloadButton='<button class="btn btn-primary my-1 bi-windows" onclick="document.getElementById(\'downloadApp\').click();"> '+language.GUI.downloadButton+'</button>';
-    downloadInfoArea.innerHTML="<p class='mt-3'>"+language.GUI.downloadLabel+"</p><p>"+downloadA+downloadButton+"</p>";
+    const downloadButton="<button class='btn btn-primary dropdown-toggle my-1 bi-download' type='button' data-bs-toggle='dropdown' aria-expanded='false'>&nbsp;"+language.GUI.downloadButton+"</button>";
+    const downloadOptions=[
+      "<a class='dropdown-item bi bi-windows' href='https://github.com/A-Herzog/QC/releases/latest/download/QC.exe'>&nbsp;"+language.GUI.downloadButtonExe+"</a>",
+      "<a class='dropdown-item bi bi-file-zip' href='https://github.com/A-Herzog/QC/releases/latest/download/QC_Linux_MacOS.zip'>&nbsp;"+language.GUI.downloadButtonZip+"</a>"
+    ];
+    downloadInfoArea.innerHTML="<p class='mt-3'>"+language.GUI.downloadLabel+"</p><p><div class='dropdown'>"+downloadButton+"<ul class='dropdown-menu'><li>"+downloadOptions.join("</li><li>")+"</li></ul>"+"</div></p>";
   }
 }
 
