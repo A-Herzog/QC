@@ -47,7 +47,20 @@ function start() {
       "<a class='dropdown-item bi bi-windows' href='https://github.com/A-Herzog/QC/releases/latest/download/QC.exe'>&nbsp;"+language.GUI.downloadButtonExe+"</a>",
       "<a class='dropdown-item bi bi-file-zip' href='https://github.com/A-Herzog/QC/releases/latest/download/QC_Linux_MacOS.zip'>&nbsp;"+language.GUI.downloadButtonZip+"</a>"
     ];
-    downloadInfoArea.innerHTML="<p class='mt-3'>"+language.GUI.downloadLabel+"</p><p><div class='dropdown'>"+downloadButton+"<ul class='dropdown-menu'><li>"+downloadOptions.join("</li><li>")+"</li></ul>"+"</div></p>";
+    const html=[];
+    html.push("<p class='mt-3'>"+language.GUI.downloadLabel+"</p>");
+    html.push("<p><div class='dropdown'>"+downloadButton);
+    html.push("<ul class='dropdown-menu'><li>"+downloadOptions.join("</li><li>")+"</li></ul>"+"</div>");
+    html.push("</p>");
+    html.push("<p class='mt-3'>"+language.GUI.infoLabel+"</p>");
+    html.push("<p>");
+    if (language.mode=='de') {
+      html.push("<a class='btn btn-primary bi bi-file-earmark-pdf me-3' href='./info/MethodenDerStatistischenQualitaetssicherung.pdf'> "+language.GUI.infoPDF+"</a>");
+    }
+    html.push("<a class='btn btn-primary bi bi-filetype-py' href='./info/StatisticalQualityControl.ipynb'> "+language.GUI.infoIPYNB+"</a>");
+    html.push("</p>");
+
+    downloadInfoArea.innerHTML=html.join("\n");
   }
 }
 

@@ -23,6 +23,7 @@ let lang;
 const languageDE={};
 lang=languageDE;
 
+lang.mode="de";
 lang.GUI={};
 lang.GUI.appName="Statistische Qualitätssicherung";
 lang.GUI.homeURL="warteschlangensimulation.de";
@@ -44,6 +45,9 @@ lang.GUI.downloadLabel="Diese Webapp steht auch als offline-nutzbare Anwendung z
 lang.GUI.downloadButton="Download";
 lang.GUI.downloadButtonExe="Windows-Anwendung (exe)";
 lang.GUI.downloadButtonZip="Linux und MacOS-Anwendung (zip)";
+lang.GUI.infoLabel="Weitere Informationen und Hilfsmittel:";
+lang.GUI.infoPDF="Kurzzusammenfassung (pdf)";
+lang.GUI.infoIPYNB="Jupyter-Notebook (ipynb)";
 lang.GUI.coordinateX="x-Koordinate";
 lang.GUI.coordinateY="y-Koordinate";
 lang.GUI.pageInfo="Allgemeine Erklärung";
@@ -138,6 +142,7 @@ gelten soll, sowie die <b>Steilheit</b> <i>h<sub>0</sub></i> an diesem Punkt vor
 const languageEN={};
 lang=languageEN;
 
+lang.mode="en";
 lang.GUI={};
 lang.GUI.appName="Statistical quality control";
 lang.GUI.homeURL="queueingsimulation.de";
@@ -159,6 +164,9 @@ lang.GUI.downloadLabel="This webapp is also available as an offline usable appli
 lang.GUI.downloadButton="Download";
 lang.GUI.downloadButtonExe="Windows application (exe)";
 lang.GUI.downloadButtonZip="Linux and macOS application (zip)";
+lang.GUI.infoLabel="Further information and resources:";
+lang.GUI.infoPDF="Brief summary (pdf)";
+lang.GUI.infoIPYNB="Jupyter Notebook (ipynb)";
 lang.GUI.coordinateX="x-coordinate";
 lang.GUI.coordinateY="y-coordinate";
 lang.GUI.pageInfo="General explanation";
