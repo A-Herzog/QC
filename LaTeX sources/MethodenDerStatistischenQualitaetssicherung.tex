@@ -78,7 +78,7 @@ Sagt der Stichprobentest aus, dass die Lieferung gut ist und ist sie dies tatsä
 
 \begin{itemize}
 \item
-Wird eine Lieferung auf Basis eines nicht gut ausgefallenen Stichprobentests abgelehnt, obwohl sie in Bezug auf ihre Grundgesamtheit die Qualitätsziele eingehalten hätte, so spricht man von einem \emph{Fehler 1.\ Art} (Lieferandenrisiko).
+Wird eine Lieferung auf Basis eines nicht gut ausgefallenen Stichprobentests abgelehnt, obwohl sie in Bezug auf ihre Grundgesamtheit die Qualitätsziele eingehalten hätte, so spricht man von einem \emph{Fehler 1.\ Art} (Lieferantenrisiko).
 \item
 Wird eine Lieferung auf Basis eines guten Stichprobenergebnissen angenommen, obwohl sie die Qualitätsziele in Bezug auf ihre Grundgesamtheit nicht einhält, so spricht man von einem \emph{Fehler 2.\ Art} (Kundenrisiko).
 \end{itemize}
@@ -317,7 +317,7 @@ Mehr als $c$ defekte Teile in der Stichprobe:\\
 Anzahl an gefundenen defekten Teilen: $R$
 \end{itemize}
 
-Geht man von der liefergrößenabhängigen absoluten Anzahl an nichtgefundenen defekten Teilen zu dem realtiven Anteil an nicht gefundenen defekten Teilen über, so gelangt man zu dem \emph{Durchschlupf} (Average Outgoing Quality, AOQ). Dieser gibt an, wie hoch der statistische Anteil an defekten Teilen ist bzw.\ wie hoch die Wahrscheinlichkeit ist, dass man nach der eingangs durchgeführten statistischen Qualitätssicherung in der Produktion dennoch auf ein defektes Werkstück trifft. Für den mittleren Durchschlupf $\mathbf{E}[Y]$ gilt gemäß den obigen Überlegungen:
+Geht man von der liefergrößenabhängigen absoluten Anzahl an nicht gefundenen defekten Teilen zu dem relativen Anteil an nicht gefundenen defekten Teilen über, so gelangt man zu dem \emph{Durchschlupf} (Average Outgoing Quality, AOQ). Dieser gibt an, wie hoch der statistische Anteil an defekten Teilen ist bzw.\ wie hoch die Wahrscheinlichkeit ist, dass man nach der eingangs durchgeführten statistischen Qualitätssicherung in der Produktion dennoch auf ein defektes Werkstück trifft. Für den mittleren Durchschlupf $\mathbf{E}[Y]$ gilt gemäß den obigen Überlegungen:
 $$
 \mathbf{E}[Y_p]=
 p\cdot P(X\le c) + 0\cdot P(X>c)=
@@ -328,6 +328,25 @@ Ist $p$ sehr niedrig, so werden zwar nur wenige Lieferungen einer Vollkontrolle 
 $$
 \mathrm{AOQL}:=
 \max_{0\le p\le1} \mathbf{E}[Y_p].
+$$
+
+
+
+\section{Mittlerer Prüfaufwand}
+
+Analog zu den Überlegungen zum mittleren Durchschlupf lässt sich auch der mittlere Prüfaufwand $\mathbf{E}[M]$ bestimmen. Bei Anwendung eines $n$-$c$-Stichprobenplans wird in jedem Fall eine Stichprobe der Größe $n$ geprüft. Wird die Lieferung angenommen, so ist der mittlere Prüfaufwand $n$. Wird die Lieferung abgelehnt, so wird eine Vollkontrolle über alle $N$ Teile durchgeführt. Damit ergibt sich für die Anzahl an zu prüfenden Teilen $M$:
+$$
+M=
+\begin{cases}
+n, & ~\text{falls}~ X\le c\\
+N, & ~\text{falls}~ X>c.
+\end{cases}
+$$
+Für den mittleren Prüfaufwand $\mathbf{E}[M]$ folgt damit:
+$$
+\mathbf{E}[M]=
+n\cdot P(X\le c) + N\cdot P(X>c)=
+n\cdot L_{n,c}(p) + N\cdot(1-L_{n,c}(p)).
 $$
 
 
