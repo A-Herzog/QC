@@ -787,6 +787,9 @@ class Diagram {
 }
 
 
+
+let idCount=0;
+
 /**
  * Generates the sample plan setup card.
  */
@@ -824,10 +827,13 @@ class Plan extends Card {
     label.className="form-label";
     label.innerHTML="max<sub>N</sub>=";
     label.style.paddingRight="5px";
+    idCount++;
+    label.htmlFor="maxN_Select_"+idCount;
     this.#planN.info.appendChild(label);
     this.#maxN=document.createElement("select");
     this.#planN.info.appendChild(this.#maxN);
     this.#maxN.className="form-select";
+    this.#maxN.id="maxN_Select_"+idCount;
     this.#maxN.style.width="unset";
     this.#maxN.style.display="inline";
     this.#maxN.onchange=()=>{

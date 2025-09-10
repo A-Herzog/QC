@@ -17,6 +17,15 @@
   }
 }
 
+.colorModeSelect {
+  display: inline-block;
+}
+
+footer {
+  margin-top: 20px;
+  padding-top: 10px;
+}
+
 footer a {
   color: blue;
   text-decoration-color: blue;
