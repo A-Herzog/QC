@@ -41,27 +41,29 @@ function start() {
       link.style.cursor="pointer";
       link.classList.add("link-primary");
     }
-  } else {
+  }
+
+  const html=[];
+  if (!isDesktopApp) {
     const downloadButton="<button class='btn btn-primary dropdown-toggle my-1 bi-download' type='button' data-bs-toggle='dropdown' aria-expanded='false'>&nbsp;"+language.GUI.downloadButton+"</button>";
     const downloadOptions=[
       "<a class='dropdown-item bi bi-windows' href='https://github.com/A-Herzog/QC/releases/latest/download/QC.exe'>&nbsp;"+language.GUI.downloadButtonExe+"</a>",
       "<a class='dropdown-item bi bi-file-zip' href='https://github.com/A-Herzog/QC/releases/latest/download/QC_Linux_MacOS.zip'>&nbsp;"+language.GUI.downloadButtonZip+"</a>"
     ];
-    const html=[];
     html.push("<p class='mt-3'>"+language.GUI.downloadLabel+"</p>");
     html.push("<p><div class='dropdown'>"+downloadButton);
     html.push("<ul class='dropdown-menu'><li>"+downloadOptions.join("</li><li>")+"</li></ul>"+"</div>");
     html.push("</p>");
-    html.push("<p class='mt-3'>"+language.GUI.infoLabel+"</p>");
-    html.push("<p>");
-    if (language.mode=='de') {
-      html.push("<a class='btn btn-primary bi bi-file-earmark-pdf me-3' href='./info/MethodenDerStatistischenQualitaetssicherung.pdf'> "+language.GUI.infoPDF+"</a>");
-    }
-    html.push("<a class='btn btn-primary bi bi-filetype-py' href='./info/StatisticalQualityControl.ipynb'> "+language.GUI.infoIPYNB+"</a>");
-    html.push("</p>");
-
-    downloadInfoArea.innerHTML=html.join("\n");
   }
+  html.push("<p class='mt-3'>"+language.GUI.infoLabel+"</p>");
+  html.push("<p>");
+  if (language.mode=='de') {
+    html.push("<a class='btn btn-primary bi bi-file-earmark-pdf me-3' href='./info/MethodenDerStatistischenQualitaetssicherung.pdf' target='_blank'> "+language.GUI.infoPDF+"</a>");
+  }
+  html.push("<a class='btn btn-primary bi bi-filetype-py' href='./info/StatisticalQualityControl.ipynb'> "+language.GUI.infoIPYNB+"</a>");
+  html.push("</p>");
+  downloadInfoArea.innerHTML=html.join("\n");
+
 }
 
 start();
