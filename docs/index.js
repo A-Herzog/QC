@@ -59,8 +59,10 @@ function start() {
   html.push("<p>");
   if (language.mode=='de') {
     html.push("<a class='btn btn-primary bi bi-file-earmark-pdf me-3' href='./info/MethodenDerStatistischenQualitaetssicherung.pdf' target='_blank'> "+language.GUI.infoPDF+"</a>");
+  } else {
+    html.push("<a class='btn btn-primary bi bi-file-earmark-pdf me-3' href='./info/MethodsOfStatisticalQualityControl.pdf' target='_blank'> "+language.GUI.infoPDF+"</a>");
   }
-  html.push("<a class='btn btn-primary bi bi-filetype-py' href='./info/StatisticalQualityControl.ipynb'> "+language.GUI.infoIPYNB+"</a>");
+  html.push("<a class='btn btn-primary bi bi-filetype-py' href='./info/StatisticalQualityControl.ipynb' download> "+language.GUI.infoIPYNB+"</a>");
   html.push("</p>");
   downloadInfoArea.innerHTML=html.join("\n");
 
