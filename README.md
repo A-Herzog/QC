@@ -2,6 +2,8 @@
 
 Statistical quality control is a web service for calculating sampling plans for statistical quality control.
 
+![Example screenshot of the operations characteristics of the algorithm from Günther](ScreenshotOperationsCharacteristics.png)
+
 ## Usage
 
 To use statistical quality control just go to
