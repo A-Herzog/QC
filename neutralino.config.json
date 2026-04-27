@@ -46,7 +46,7 @@
     "binaryName": "QC",
     "resourcesPath": "/docs/",
     "clientLibrary": "docs/libs/neutralino.js",
-    "binaryVersion": "6.5.0",
-    "clientVersion": "6.5.0"
+    "binaryVersion": "6.7.0",
+    "clientVersion": "6.7.0"
   }
 }
